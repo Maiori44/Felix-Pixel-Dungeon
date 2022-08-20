@@ -71,6 +71,19 @@ public class AboutScene extends PixelScene {
 		shpxLink += "&utm_medium=about_page";
 		shpxLink += "&utm_campaign=ingame_link";
 
+		CreditsBlock fpx = new CreditsBlock(true, 0xFF0000,
+				"Felix's Pixel Dungeon",
+				Icons.SHPX.get(),
+				"Developed by: _Felice D'Angelo_\nBased on Shattered Pixel Dungeon's open source",
+				"github.com/Maiori44/Felix-Pixel-Dungeon",
+				shpxLink);
+		if (landscape()){
+			fpx.setRect((w - fullWidth)/2f - 6, 10, 120, 0);
+		} else {
+			fpx.setRect((w - fullWidth)/2f, 6, 120, 0);
+		}
+		content.add(fpx);
+
 		CreditsBlock shpx = new CreditsBlock(true, Window.SHPX_COLOR,
 				"Shattered Pixel Dungeon",
 				Icons.SHPX.get(),
@@ -78,11 +91,13 @@ public class AboutScene extends PixelScene {
 				"ShatteredPixel.com",
 				shpxLink);
 		if (landscape()){
-			shpx.setRect((w - fullWidth)/2f - 6, 10, 120, 0);
+			shpx.setRect((w - fullWidth)/2f - 6, fpx.height() + 20, 120, 0);
 		} else {
-			shpx.setRect((w - fullWidth)/2f, 6, 120, 0);
+			shpx.setRect((w - fullWidth)/2f, fpx.height() + 12, 120, 0);
 		}
 		content.add(shpx);
+
+		addLine(shpx.top() - 4, content);
 
 		CreditsBlock alex = new CreditsBlock(false, Window.SHPX_COLOR,
 				"Hero Art & Design:",
