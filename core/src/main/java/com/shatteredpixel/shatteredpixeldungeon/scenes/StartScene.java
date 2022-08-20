@@ -23,11 +23,14 @@ package com.shatteredpixel.shatteredpixeldungeon.scenes;
 
 import com.shatteredpixel.shatteredpixeldungeon.Badges;
 import com.shatteredpixel.shatteredpixeldungeon.Chrome;
+import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.GamesInProgress;
 import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroSubClass;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Journal;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
+import com.shatteredpixel.shatteredpixeldungeon.ui.ActionIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Archs;
 import com.shatteredpixel.shatteredpixeldungeon.ui.ExitButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Icons;
@@ -263,9 +266,13 @@ public class StartScene extends PixelScene {
 		@Override
 		protected void onClick() {
 			if (newGame) {
-				GamesInProgress.selectedClass = null;
+				GamesInProgress.selectedClass = HeroClass.MAGE;
 				GamesInProgress.curSlot = slot;
-				ShatteredPixelDungeon.switchScene(HeroSelectScene.class);
+				Dungeon.hero = null;
+				Dungeon.daily = false;
+				ActionIndicator.action = null;
+				InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
+				ShatteredPixelDungeon.switchScene(InterlevelScene.class);
 			} else {
 				ShatteredPixelDungeon.scene().add( new WndGameInProgress(slot));
 			}
